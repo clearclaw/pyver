@@ -1,0 +1,25 @@
+from setuptools import setup, find_packages
+
+__version__ = "unknown"
+
+exec open ("pyver/version.py")
+
+setup (name = "pyver",
+  version = __version__,
+  description = "Git-based versioning for Python tools and modules.",
+  long_description = "Git-based versioning for Python tools and modules.",
+  classifiers = [],
+  keywords = "",
+  author = "J C Lawrence",
+  author_email = "claw@kanga.nu",
+  url = "http://kanga.nu/~claw/",
+  license = "GPL v3",
+  packages = find_packages (exclude = ["tests",]),
+  package_data = {
+  },
+  zip_safe = True,
+  install_requires = [
+  ],
+  entry_points = {
+    },
+  )
