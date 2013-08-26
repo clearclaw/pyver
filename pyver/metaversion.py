@@ -20,13 +20,13 @@ DEFAULT_GITCMD = "git describe --long --tags --match [0-9]*.[0-9]* --dirty"
 
 def get_version (pkg = __name__):
   try:
+    s = pkg_resources.get_distribution (pkg.split (".")[0]).version
+    return s, tuple (s.split ("."))
+  except: # pylint: disable-msg=W0702
     o = subprocess.check_output (
       DEFAULT_GITCMD.split (),
       stderr = subprocess.PIPE,
       shell = False).decode ().strip ()
     s = o.replace ("-", ".", 1)
     return s, tuple (s.split ("."))
-  except: # pylint: disable-msg=W0702
-    # Likely not in a Git repo -- either way, punt
-    s = pkg_resources.get_distribution (pkg.split (".")[0]).version
-    return s, tuple (s.split ("."))
+  
