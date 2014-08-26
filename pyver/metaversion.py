@@ -22,10 +22,13 @@ def get_version (pkg = __name__):
   try:
     s = pkg_resources.get_distribution (pkg.split (".")[0]).version
   except: # pylint: disable-msg=W0702
-    mod = __import__ (pkg)
-    path = os.path.dirname (mod.__file__)
-    cwd = os.getcwd ()
-    os.chdir (path)
+    try:
+      mod = __import__ (pkg) # A comment
+      path = os.path.dirname (mod.__file__)
+      cwd = os.getcwd ()
+      os.chdir (path)
+    except ImportError as e:
+      cwd = os.getcwd ()
     o = subprocess.check_output (
       DEFAULT_GITCMD.split (),
       stderr = subprocess.PIPE,
