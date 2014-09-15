@@ -42,7 +42,8 @@ Now when you install your package it will be versioning using the tag
 for the major and minor number, and the number of commits since the
 tag plus the fingerprint of the last commit for the patch level.  And,
 if you installed from a tree with uncommitted changes, or perhaps are
-using a "develop" install, the patchlevel will have a "-dirty" suffix.
+using a "develop" install with uncommitted changes, then the
+patchlevel will have a "-dirty" suffix.
 
 Of course pyver is versioned with pyver:
 
@@ -59,7 +60,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 ```
 
 But if I touch a file in the repository (such as this README I'm
-editing), then the version will change:
+editing now), then the version will change:
 
 ```
 $ python
@@ -79,12 +80,12 @@ Managing versions
 The intent and expectation is that the major and minor version values
 will be managed by the business (generally Product Marketing).  As
 such the minor and major version numbers are managed by the annotated
-tag.  
+tag.
 
 The patchlevel however is the developer's world.  The developer does
 work and the patchlevel automagically moves forward in a clear and
 documentary way that can be audited and traced back to a single unique
-point in the Git tree without the developer doing anything.  
+point in the Git tree without the developer doing anything.
 
 And that's the key: the default is hands-free and provably correct and
 auditable, and the rare/special business case is the only change that
