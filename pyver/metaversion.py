@@ -20,8 +20,6 @@ DEFAULT_GITCMD = "git describe --long --tags --match [0-9]*.[0-9]* --dirty"
 
 def get_version (pkg = __name__):
   try:
-    s = pkg_resources.get_distribution (pkg.split (".")[0]).version
-  except: # pylint: disable-msg=W0702
     try:
       mod = __import__ (pkg) # A comment
       path = os.path.dirname (mod.__file__)
@@ -35,4 +33,6 @@ def get_version (pkg = __name__):
       shell = False).decode ().strip ()
     s = o.replace ("-", ".", 1)
     os.chdir (cwd)
+  except: # pylint: disable-msg=W0702
+    s = pkg_resources.get_distribution (pkg.split (".")[0]).version
   return s, tuple (s.split ("."))
