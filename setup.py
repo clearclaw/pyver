@@ -12,7 +12,7 @@ setup (
     classifiers = [
         "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
-        "icense :: OSI Approved :: "
+        "License :: OSI Approved :: "
         + "GNU General Public License v3 or later (GPLv3+)",
         "Topic :: Utilities",
     ],
