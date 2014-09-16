@@ -1,3 +1,4 @@
+import os
 from setuptools import setup, find_packages
 
 __version__ = "unknown"
@@ -8,7 +9,8 @@ setup (
     name = "pyver",
     version = __version__,
     description = "Git-based versioning for Python tools and modules.",
-    long_description = open ("README.md").read (),
+    long_description = open (os.path.join (os.path.dirname (
+        os.path.abspath (__file__)), "README.md")).read (),
     classifiers = [
         "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
