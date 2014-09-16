@@ -9,8 +9,7 @@ setup (
     name = "pyver",
     version = __version__,
     description = "Git-based versioning for Python tools and modules.",
-    long_description = open (os.path.join (os.path.dirname (
-        os.path.abspath (__file__)), "README.md")).read (),
+    long_description = file ("README.md").read (),
     classifiers = [
         "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",

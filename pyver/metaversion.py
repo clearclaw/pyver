@@ -20,10 +20,10 @@ DEFAULT_GITCMD = "git describe --long --tags --match [0-9]*.[0-9]* --dirty"
 
 def get_version (pkg = __name__):
   try:
+    cwd = os.getcwd ()
     try:
-      mod = __import__ (pkg) # A comment
+      mod = __import__ (pkg)
       path = os.path.dirname (mod.__file__)
-      cwd = os.getcwd ()
       os.chdir (path)
     except ImportError as e:
       cwd = os.getcwd ()
