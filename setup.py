@@ -25,7 +25,7 @@ setup (
     download_url = ("https://github.com/clearclaw/pyver/tarball/%s.%s"
                     % (__version_info__[0], __version_info__[1])),
     license = "GPL v3",
-    packages = ["pyver",],
+    packages = find_packages (exclude = ["tests",]),
     package_data = {
     },
     zip_safe = True,
