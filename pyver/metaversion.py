@@ -26,7 +26,7 @@ def get_version (pkg = __name__):
       path = os.path.dirname (mod.__file__)
       os.chdir (path)
     except ImportError as e:
-      cwd = os.getcwd ()
+      pass
     o = subprocess.check_output (
       DEFAULT_GITCMD.split (),
       stderr = subprocess.PIPE,
