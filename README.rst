@@ -39,7 +39,7 @@ By default pyver generates a *local version identifier* per PEP 440:
 
 ::
 
-    major.minor.patch+commit\_id[.dirty]
+    major.minor.patch+commit_id[.dirty]
 
 If you need a PEP 440 compliant *public version identifier* (eg for
 PyPI), then set public to True in the call to get\_version():
