@@ -17,14 +17,12 @@ Implementation
 
 Apply an annotated tag of the form #.# to your git repository:
 
-::
-
+..
     git tag -a 1.0 -m "Initial version"
 
 Edit your setup.py as follows, eg for "my\_package":
 
-.. code:: python
-
+..
     from setuptools import setup, find_packages
     import pyver
 
@@ -37,13 +35,13 @@ Edit your setup.py as follows, eg for "my\_package":
 
 By default pyver generates a *local version identifier* per PEP 440:
 
-::
+..
     major.minor.patch+commit\_id[.dirty] '''
 
 If you need a PEP 440 compliant *public version identifier* (eg for
 PyPI), then set public to True in the call to get\_version():
 
-:: code:: python
+..
 
     from setuptools import setup, find_packages
     import pyver
@@ -58,7 +56,7 @@ PyPI), then set public to True in the call to get\_version():
 
 And that will produce *public version identifiers*:
 
-::
+..
     major.minor.patch[.dev1]
 
 Unfortunately the git commit fingerprint can't be expressed in the
@@ -69,7 +67,7 @@ http://legacy.python.org/dev/peps/pep-0440/
 Next, add the following two lines to the **init**.py at the root of your
 package:
 
-::  code:: python
+..
     import pyver
     __version__, __version_info__ = pyver.get_version (pkg = __name__)
 
@@ -88,8 +86,7 @@ patchlevel will have a "-dirty" suffix.
 
 Of course pyver is versioned with pyver:
 
-:: code:: python
-
+..
     $ python
     Python 2.7.6 (default, Mar 22 2014, 22:59:56)
     [GCC 4.8.2] on linux2
@@ -103,8 +100,7 @@ Of course pyver is versioned with pyver:
 But if I touch a file in the repository (such as this README I'm editing
 now), then the version will change:
 
-:: code:: python
-
+..
     $ python
     Python 2.7.6 (default, Mar 22 2014, 22:59:56)
     [GCC 4.8.2] on linux2
@@ -118,8 +114,7 @@ now), then the version will change:
 Likewise for PEP 440 public versions if public is passed as true (as it
 is now for pyver (a recent change)):
 
-:: code:: python
-
+..
     $ python
     Python 2.7.6 (default, Mar 22 2014, 22:59:56)
     [GCC 4.8.2] on linux2
@@ -134,8 +129,7 @@ and while we can't capture the git commit fingerprint in a public
 version per PEP 440, the dirty state is still caught as "dev1" in a
 dirty repository:
 
-:: code:: python
-
+..
     $ python
     Python 2.7.6 (default, Mar 22 2014, 22:59:56)
     [GCC 4.8.2] on linux2
