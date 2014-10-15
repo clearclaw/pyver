@@ -36,7 +36,7 @@ setup (name = "my_package",
 By default pyver generates a _local version identifier_ per PEP 440:
 
 '''
-<major>.<minor>.<patch>+<commit_id>[.dirty]
+major.minor.patch+commit_id[.dirty]
 '''
 
 If you need a PEP 440 compliant _public version identifier_ (eg for
@@ -54,6 +54,12 @@ setup (name = "my_package",
     description = "Something that does something...",
     ...etc.
 ```
+
+And that will produce _public version identifiers_:
+
+'''
+major.minor.patch[.dev1]
+'''
 
 Unfortunately the git commit fingerprint can't be expressed in the
 patch-level for public versions per PEP 440, and so that has to be
@@ -77,11 +83,11 @@ Usage
 
 Now when you install your package it will be versioning using the tag
 for the major and minor number, and the number of commits since the
-tag.  If you plus the fingerprint and dirty state of the last commit for the
-patch level if using the default local version).  And, if you
-installed from a tree with uncommitted changes, or perhaps are using a
-"develop" install with uncommitted changes, then the patchlevel will
-have a "-dirty" suffix.
+tag for the patch (plus the fingerprint and dirty state of the last
+commit for the patch level if using the default _local version
+identifiers_).  And, if you installed from a tree with uncommitted
+changes, or perhaps are using a "develop" install with uncommitted
+changes, then the patchlevel will have a "-dirty" suffix.
 
 Of course pyver is versioned with pyver:
 
@@ -112,7 +118,8 @@ Type "help", "copyright", "credits" or "license" for more information.
 ('0', '1', '3+gc1a0f15', 'dirty')
 ```
 
-Likewise for PEP 440 public versions if public is passed as true:
+Likewise for PEP 440 public versions if public is passed as true (as
+it is now for pyver (a recent change)):
 
 ```
 $ python
