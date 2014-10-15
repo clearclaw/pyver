@@ -40,7 +40,7 @@ By default pyver generates a _local version identifier_ per PEP 440:
 '''
 
 If you need a PEP 440 compliant _public version identifier_ (eg for
-PyPI), then set pep440 to True in the call to get_version():
+PyPI), then set public to True in the call to get_version():
 
 ```
 from setuptools import setup, find_packages
@@ -112,7 +112,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 ('0', '1', '3+gc1a0f15', 'dirty')
 ```
 
-Likewise for PEP 440 public versions if pep440 is passed as true:
+Likewise for PEP 440 public versions if public is passed as true:
 
 ```
 $ python
