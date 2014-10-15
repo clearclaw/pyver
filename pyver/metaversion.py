@@ -14,7 +14,7 @@ current codeset.
 Assumes that the tags fit the regex [0-9]*.[0-9]*
 """
 
-import importlib, inspect, os, pkg_resources, subprocess
+import os, pkg_resources, subprocess
 
 DEFAULT_GITCMD = "git describe --long --tags --match [0-9]*.[0-9]* --dirty"
 
@@ -25,13 +25,13 @@ def get_version (pkg = __name__):
       mod = __import__ (pkg)
       path = os.path.dirname (mod.__file__)
       os.chdir (path)
-    except ImportError as e:
+    except: # pylint: disable-msg=W0702
       pass
     o = subprocess.check_output (
       DEFAULT_GITCMD.split (),
       stderr = subprocess.PIPE,
       shell = False).decode ().strip ()
-    s = o.replace ("-", ".", 1)
+    s = o.replace ("-", ".", 1).replace ("-", "+", 1).replace ("-", ".", 1)
   except: # pylint: disable-msg=W0702
     s = pkg_resources.get_distribution (pkg.split (".")[0]).version
   os.chdir (cwd)
