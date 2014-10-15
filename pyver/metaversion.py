@@ -35,4 +35,6 @@ def get_version (pkg = __name__):
   except: # pylint: disable-msg=W0702
     s = pkg_resources.get_distribution (pkg.split (".")[0]).version
   os.chdir (cwd)
-  return s, tuple (s.split ("."))
+  vals = s.split (".")
+  return ("%s.%s.%s" % (vals[0], vals[1], vals[2][:vals[2].find ("+")]),
+          tuple (s.split (".")))

@@ -5,6 +5,9 @@ __version__ = "unknown"
 
 exec open ("pyver/version.py")
 
+print __version__
+print __version_info__
+
 setup (
     name = "pyver",
     version = __version__,
@@ -27,7 +30,7 @@ setup (
     packages = find_packages (exclude = ["tests",]),
     package_data = {
     },
-    zip_safe = True,
+    zip_safe = False,
     install_requires = [
     ],
     entry_points = {
