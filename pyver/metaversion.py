@@ -18,7 +18,7 @@ import os, pkg_resources, subprocess
 
 DEFAULT_GITCMD = "git describe --long --tags --match [0-9]*.[0-9]* --dirty"
 
-def get_version (pkg = __name__):
+def get_version (pkg = __name__, public = False):
   cwd = os.getcwd ()
   try:
     try:
@@ -35,6 +35,12 @@ def get_version (pkg = __name__):
   except: # pylint: disable-msg=W0702
     s = pkg_resources.get_distribution (pkg.split (".")[0]).version
   os.chdir (cwd)
-  vals = s.split (".")
-  return ("%s.%s.%s" % (vals[0], vals[1], vals[2][:vals[2].find ("+")]),
-          tuple (s.split (".")))
+  if public:
+    vals = s.split (".")
+    patch = (vals[2][:vals[2].find ("+")]) if vals[2].find ("+") else vals[2]
+
+    info = ((vals[0], vals[1], patch, "dev1")
+            if len (vals) == 4 else (vals[0], vals[1], patch))
+    return ".".join (info), info
+  else:
+    return s, s.split (".")

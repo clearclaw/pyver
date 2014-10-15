@@ -1,8 +1,6 @@
 import os
 from setuptools import setup, find_packages
 
-__version__ = "unknown"
-
 exec open ("pyver/version.py")
 
 setup (
