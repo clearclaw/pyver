@@ -37,8 +37,8 @@ def get_version (pkg = __name__, public = False):
   os.chdir (cwd)
   if public:
     vals = s.split (".")
-    patch = (vals[2][:vals[2].find ("+")]) if vals[2].find ("+") else vals[2]
-
+    patch = ((vals[2][:vals[2].find ("+")])
+             if vals[2].find ("+") != -1 else vals[2])
     info = ((vals[0], vals[1], patch, "dev1")
             if len (vals) == 4 else (vals[0], vals[1], patch))
     return ".".join (info), info
