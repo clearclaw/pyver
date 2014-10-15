@@ -22,7 +22,7 @@ Apply an annotated tag of the form #.# to your git repository:
 
 Edit your setup.py as follows, eg for "my\_package":
 
-..
+.. code::python
     from setuptools import setup, find_packages
     import pyver
 
