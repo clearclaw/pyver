@@ -5,9 +5,6 @@ __version__ = "unknown"
 
 exec open ("pyver/version.py")
 
-print __version__
-print __version_info__
-
 setup (
     name = "pyver",
     version = __version__,
