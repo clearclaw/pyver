@@ -33,10 +33,12 @@ def chdir (dname):
     os.chdir (cwd)
 
 def get_version (pkg = __name__, public = False):
+  import pudb
+  pudb.set_trace ()
   s = None
   try:
     mod = __import__ (pkg)
-    path = os.path.dirname (mod.__file__)
+    path = os.path.dirname (mod.__file__) or "./"
     with chdir (path) as cwd: # pylint: disable=W0612
       o = subprocess.check_output (
         DEFAULT_GITCMD.split (),
@@ -52,7 +54,7 @@ def get_version (pkg = __name__, public = False):
       raise VersionError (m)
   finally:
     if s is None:
-      LOG.m = "Failed to determine installed version."
+      m = "Failed to determine installed version."
       LOG.error (m)
       raise VersionError (m)
   if public:
