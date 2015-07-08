@@ -33,8 +33,8 @@ def chdir (dname):
     os.chdir (cwd)
 
 def get_version (pkg = __name__, public = False):
-    import pudb
-    pudb.set_trace ()
+  import pudb
+  pudb.set_trace ()
   s = None
   try:
     mod = __import__ (pkg)
