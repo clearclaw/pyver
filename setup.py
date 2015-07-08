@@ -1,7 +1,7 @@
 import os
 from setuptools import setup, find_packages
 
-exec open ("pyver/pyver.py")
+exec open ("pyver/__init__.py")
 
 setup (
     name = "pyver",
