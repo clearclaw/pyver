@@ -32,6 +32,8 @@ def get_version (pkg = __name__, public = False):
 
   Assumes that the tags fit the regex [0-9]*.[0-9]*
   """
+  import pudb
+  pudb.set_trace ()
   s = None
   try:
     mod = __import__ (pkg)
