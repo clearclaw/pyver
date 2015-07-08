@@ -1,22 +1,11 @@
 #! /usr/bin/env python
 
-import contextlib, logging, os, pkg_resources, subprocess
+import os, pkg_resources, subprocess
 
-LOG = logging.getLogger (__name__)
 DEFAULT_GITCMD = "git describe --long --tags --match [0-9]*.[0-9]* --dirty"
 
 class VersionError (Exception):
   pass
-
-@contextlib.contextmanager
-def chdir (dname):
-  cwd = os.getcwd ()
-  try:
-    if dname is not None:
-      os.chdir (dname)
-    yield dname
-  finally:
-    os.chdir (cwd)
 
 def get_version (pkg = __name__, public = False):
   """
@@ -32,30 +21,23 @@ def get_version (pkg = __name__, public = False):
 
   Assumes that the tags fit the regex [0-9]*.[0-9]*
   """
-  import pudb
-  pudb.set_trace ()
-  s = None
+def get_version (pkg = __name__, public = False):
+  cwd = os.getcwd ()
   try:
-    mod = __import__ (pkg)
-    path = os.path.dirname (mod.__file__) or "./"
-    with chdir (path) as cwd: # pylint: disable=W0612
-      o = subprocess.check_output (
-        DEFAULT_GITCMD.split (),
-        stderr = subprocess.PIPE,
-        shell = False).decode ().strip ()
-      s = o.replace ("-", ".", 1).replace ("-", "+", 1).replace ("-", ".", 1)
-  except OSError:
     try:
-      s = pkg_resources.get_distribution (pkg.split (".")[0]).version
-    except Exception as e:
-      m = "Problem getting pkg resources: %s" % e
-      LOG.error (m)
-      raise VersionError (m)
-  finally:
-    if s is None:
-      m = "Failed to determine installed version."
-      LOG.error (m)
-      raise VersionError (m)
+      mod = __import__ (pkg)
+      path = os.path.dirname (mod.__file__)
+      os.chdir (path)
+    except: # pylint: disable-msg=W0702
+      pass
+    o = subprocess.check_output (
+      DEFAULT_GITCMD.split (),
+      stderr = subprocess.PIPE,
+      shell = False).decode ().strip ()
+    s = o.replace ("-", ".", 1).replace ("-", "+", 1).replace ("-", ".", 1)
+  except: # pylint: disable-msg=W0702
+    s = pkg_resources.get_distribution (pkg.split (".")[0]).version
+  os.chdir (cwd)
   if public:
     vals = s.split (".")
     patch = ((vals[2][:vals[2].find ("+")])
