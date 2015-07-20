@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /bin/bash
 
 try:
   import pyver # pylint: disable=W0611
