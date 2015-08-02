@@ -26,8 +26,8 @@ setup (
     package_data = {
     },
     zip_safe = False,
-    install_requires = [
-    ],
+    install_requires = [line.strip ()
+                        for line in file ("requirements.txt").readlines ()],
     entry_points = {
       "console_scripts": [
         "pyver_install = pyver.main:main",
