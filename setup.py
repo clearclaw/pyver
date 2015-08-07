@@ -21,13 +21,16 @@ setup (
     url = "https://github.com/clearclaw/pyver",
     download_url = ("https://github.com/clearclaw/pyver/tarball/%s.%s"
                     % (__version_info__[0], __version_info__[1])),
-    license = "GPL v3",
+    license = "LGPL v3",
     packages = find_packages (exclude = ["tests",]),
     package_data = {
     },
     zip_safe = False,
-    install_requires = [
-    ],
+    install_requires = [line.strip ()
+                        for line in file ("requirements.txt").readlines ()],
     entry_points = {
+      "console_scripts": [
+        "pyver_install = pyver.main:main",
+      ],
     },
-  )
+)
