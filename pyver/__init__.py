@@ -22,7 +22,10 @@ def get_version (pkg = __name__, public = False):
   Assumes that the tags fit the regex [0-9]*.[0-9]*
   """
 def get_version (pkg = __name__, public = False):
-  cwd = os.getcwd ()
+  try:
+    cwd = os.getcwd ()
+  except:
+    cwd = None
   try:
     try:
       mod = __import__ (pkg)
@@ -37,7 +40,8 @@ def get_version (pkg = __name__, public = False):
     s = o.replace ("-", ".", 1).replace ("-", "+", 1).replace ("-", ".", 1)
   except: # pylint: disable-msg=W0702
     s = pkg_resources.get_distribution (pkg.split (".")[0]).version
-  os.chdir (cwd)
+  if cwd is not None:
+    os.chdir (cwd)
   if public:
     vals = s.split (".")
     patch = ((vals[2][:vals[2].find ("+")])
