@@ -1,3 +1,6 @@
+Development on pyver has ceased.  versioneer accomplishes what I'd 
+intended with pyver and so much more!  Go use versioneer instead!
+
 pyver
 =====
 
